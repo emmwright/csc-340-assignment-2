@@ -11,6 +11,32 @@
 
 // Assignment 2 functions -------------------------------------------
 // TO DO: implement the two functions here
+template<class ItemType>
+bool LinkedBag<ItemType>::append(const ItemType& newEntry) {
+	Node<ItemType>* newNodePtr = new Node<ItemType>(newEntry);
+	if (headPtr == nullptr) { //if the first node is null, create a new node
+		headPtr = newNodePtr;
+	} else {
+		Node<ItemType>* curPtr = headPtr;
+		while (curPtr->getNext() != nullptr) { //while the current/head node has a node next to it, it is not the last node
+			curPtr = curPtr->getNext(); //move to the next node
+		}
+		curPtr->setNext(newNodePtr); //se the next node to a new node / add a new node to the end
+	}
+	itemCount++;
+	return true;
+}
+
+template<class ItemType>
+Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const {
+	Node<ItemType>* curPtr = headPtr; //current == head
+	int counter = 0;
+	while (curPtr != nullptr && counter < indexK) { //if current is not equal to null and counter is less than k
+		curPtr = curPtr->getNext(); //move to the next node
+		counter++;
+	}
+	return curPtr; //return the current/kth node
+}
 
 // ------------------------------------------------------------------
 
