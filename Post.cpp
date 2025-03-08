@@ -1,10 +1,10 @@
 // TO DO: #include all the standard libraries and your own libraries here
+#include "Post.h"
 #include <chrono>
-
+#include <string>
 
 // TO DO: function implementations
-
-
+Post::Post() {}
 
 // When creating a post, you may use this code to set time stamp
 auto time_stamp = std::chrono::steady_clock::now();
