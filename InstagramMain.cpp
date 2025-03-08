@@ -95,10 +95,16 @@ int main(){
 	// TO DO: Ask the user to enter their information 
 	//        Instantiate a new User object
 
+	// TODO(emma): Collect attributes from user from cin, and populate the User object with them.
+	std::string username = "Emma";
+	std::string email = "emma@cs.com";
+	std::string password = "123456";
+	std::string bio = "I love coding!";
+	std::string profilePicture = "https://www.cs.com/Emma.jpg";
 
 	// call instagram createUser function 
 	// replace /*...*/ with the right parameters
-	instagram.createUser(/*...*/);
+	instagram.createUser(username, email, password, bio, profilePicture);
 
 	// Retrieve the user 
 	User currentUser = instagram.getUser(0);

@@ -1,4 +1,7 @@
 // TO DO: #include all the standard libraries and your own libraries here
+#ifndef USER_
+#define USER_
+
 #include <string>
 
 // To DO: define the class User with the necessary functions and data fields
@@ -13,4 +16,9 @@ public:
     // You don't need to modify it but will have to put it inside your class.
     // Operator == overloading function prototype:
     bool operator==(const User& otherUser) const;
-};  
+
+    std::string getUsername() const;
+};
+
+#include "User.cpp"
+#endif

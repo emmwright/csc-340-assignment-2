@@ -1,3 +1,6 @@
+#ifndef POST_
+#define POST_
+
 // TO DO: #include all the standard libraries and your own libraries here
 #include <string>
 
@@ -15,3 +18,6 @@ public:
     // Operator overloading function prototype:
     bool operator==(const Post& otherPost) const;
 };
+
+#include "Post.cpp"
+#endif
