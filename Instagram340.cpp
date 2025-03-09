@@ -15,12 +15,13 @@ Instagram340::~Instagram340(){
 }
 
 void Instagram340::createUser(const std::string& username, const std::string& email, const std::string& password,
-				const std::string& bio, const std::string& profilePicture){
-	// TO DO: implement function
-	User newUser = User();
-	// TODO(emma): set attributes (like username, email, etc.) of newUser
-	users.add(newUser);
+                               const std::string& bio, const std::string& profilePicture) {
+    // Create a new User and populate it with the data
+    User newUser = User(username, email, password, bio, profilePicture); // changed this from User newUser = User();
+    // Add the new user to the users LinkedBag
+    users.add(newUser);
 }
+
 
 User Instagram340::getUser(const int& indexK){
 	// TO DO: implement function
@@ -29,5 +30,6 @@ User Instagram340::getUser(const int& indexK){
 	// if (kthNode != nullptr){
 	// 	return kthNode->getItem();
 	// }
-	return User();
+	//User newUser = User();
+	return users.findKthItem(indexK)->getItem();
 }

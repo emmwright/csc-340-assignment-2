@@ -4,7 +4,6 @@
 // TO DO: #include any other libraries you need
 #include "Instagram340.h"
 
-
 using namespace std;
 
 /** 
@@ -14,10 +13,12 @@ using namespace std;
  * @param user object to interact with
  * 
  * */
-void displayUserManu(User& user){
+void displayUserMenu(User& user){
 	int userChoice = 0;
 	do {
-		cout << "\n Hi, "<< user.getUsername() <<", what would you like to do:\n"
+//		cout << "\n Hi, "<< user.getUsername() <<", what would you like to do:\n"
+		cout << "\n Hi, what would you like to do:\n"
+
 		<< "1. Display Profile\n"
 		<< "2. Modify Password\n"
 		<< "3. Create Post\n"
@@ -33,7 +34,8 @@ void displayUserManu(User& user){
 			case 1:{
 				// TO DO: display user's profile information
 				//      : e.g. user.displayProfile();
-				break;
+				user.displayProfile();
+			 	break;
 			}
 			case 2: {
 				// TO DO: ask for new password and update user's password
@@ -108,7 +110,7 @@ int main(){
 
 	// Retrieve the user 
 	User currentUser = instagram.getUser(0);
-	displayUserManu(currentUser);
+	displayUserMenu(currentUser);
 				
 	return 0;
 }
