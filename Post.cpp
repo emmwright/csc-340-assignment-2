@@ -2,16 +2,18 @@
 #include "Post.h"
 #include <chrono>
 #include <string>
+#include <iostream>
 
 // TO DO: function implementations
 Post::Post() {}
+
+Post::Post(const std::string& title, const std::string& mediaURL, int videoLength)
+    : title(title), mediaURL(mediaURL), videoLength(videoLength), time_stamp(std::chrono::steady_clock::now()) {}
 
 // When creating a post, you may use this code to set time stamp
 auto time_stamp = std::chrono::steady_clock::now();
 
 
-// ------------------------------------------------------------------------------
-// Operator overloading implementation
 bool Post::operator==(const Post& otherPost) const {
 	return Post::title == otherPost.title;
 }
@@ -33,4 +35,8 @@ int Post::computeTimeToExpiration() const{
 	return timeToExpiration;
 }
 
+void Post::displayPost() const { 
+	std::cout << "Title: " << title << "\nMedia URL: " << mediaURL <<
+	 "\nVideo Length: " << videoLength << " seconds";
 
+}

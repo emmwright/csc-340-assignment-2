@@ -39,6 +39,7 @@ void displayUserMenu(User& user){
 			}
 			case 2: {
 				// TO DO: ask for new password and update user's password
+				user.modifyPassword();
 				break;
 			}
 			case 3: {
@@ -46,17 +47,20 @@ void displayUserMenu(User& user){
 				//        (title, media URL, video length in seconds)
 				//        Your program should set the time stamp to current time (code provided in Post.cpp) 
 				// then create the post and add it to the user's posts
+				user.createPost();
 				break;
 			}
 			case 4:{
 				// TO DO: display all user's posts
 				//        You may re-use code from class demo
+				user.displayPosts();
 				break;
 			}
 			case 5: {
 				// TO DO: ask the user for a value k
 				// Find the Kth post, if k > Linked Bag size, 
 				//    return an error message that includes the size of the Linked Bag
+				user.displayKthPost();
 				break;
 			}
 			case 6: {
@@ -64,6 +68,7 @@ void displayUserMenu(User& user){
 				// Find the post, then update the title. 
 				// If index > Linked Bag size, 
 				//    return an error message that includes the size of the Linked Bag
+				user.modifyPost();
 				break;
 			}
 			case 7: {
@@ -71,6 +76,7 @@ void displayUserMenu(User& user){
 				// Find the post, then remove it from the list. 
 				// If index > LinkedBag size, 
 				//    return an error message that includes the size of the Linked Bag
+				user.deletePost();
 				break;
 			}
 			case 8:{
@@ -96,8 +102,7 @@ int main(){
 	cout << "\n Welcome to Instagram340:" << endl;
 	// TO DO: Ask the user to enter their information 
 	//        Instantiate a new User object
-
-	// TODO(emma): Collect attributes from user from cin, and populate the User object with them.
+	
 	std::string username = "Emma";
 	std::string email = "emma@cs.com";
 	std::string password = "123456";

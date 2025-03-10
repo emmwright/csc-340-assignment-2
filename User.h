@@ -2,26 +2,35 @@
 #define USER_
 
 #include <string>
+#include "Post.h"
+#include <vector>
 
 class User {
 private:
     std::string username;
     std::string email;
-    std::string password; //added
-    std::string bio;  //added
-    std::string profilePicture; //added
+    std::string password; 
+    std::string bio;  
+    std::string profilePicture; 
+    std::vector<Post> posts; 
 
 public:
-    // Declare functions (do not define them here)
     bool operator==(const User& otherUser) const;
     std::string getUsername() const;
-    void displayProfile() const; //added
+   
+    void displayProfile() const; 
+    void modifyPassword(); 
+    void createPost(); 
+    void displayPosts();
+    void displayKthPost();
+    void modifyPost();
+    void deletePost();
 
     User(); 
     User(const std::string& username, const std::string& email, const std::string& password,
-         const std::string& bio, const std::string& profilePicture); //added
+         const std::string& bio, const std::string& profilePicture); 
 
-    User(const std::string& username, const std::string& email); //added
+    User(const std::string& username, const std::string& email); 
 
 };
 
