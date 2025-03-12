@@ -1,0 +1,83 @@
+ Welcome to Instagram340:
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 3
+Select type of post:
+Reel
+Title: A day in San Francisco!
+Media URL: urlgoeshere..
+Video Length (in seconds): 40
+Reel Created successfully.
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 6
+Enter index of post to edit: 1
+Enter new title: A sunny day in San Francisco
+Post updated.
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 4
+Displaying all posts:
+Title: A sunny day in San Francisco
+Media URL: urlgoeshere..
+Video Length: 40 seconds
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 7
+Enter index of post to delete: 1
+Post deleted.
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 4
+Displaying all posts:
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 

@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream> 
 #include "User.h"
+#include "Reel.h"
+#include "Story.h"
 
 User::User() : username(""), email(""), password(""), bio(""), profilePicture("") {} 
 
@@ -39,8 +41,17 @@ void User::modifyPassword() {
 void User::createPost() {
     std::string title, mediaURL, postType;
     int videoLength;
-    std::cout << "Select type of post:\n";
-    std::cin >> postType;
+
+    std::cout << "Select type of post (Story/Reel):\n";
+    while (true) {
+    
+        std::cin >> postType;
+        if (postType == "Story" || postType == "Reel") {
+            break;
+        } else {
+            std::cout << "Invalid. Please enter 'Story' or 'Reel': ";
+        }
+    }
     std::cout << "Title: ";
     std::cin.ignore(); 
     std::getline(std::cin, title);
@@ -48,9 +59,16 @@ void User::createPost() {
     std::getline(std::cin, mediaURL);
     std::cout << "Video Length (in seconds): ";
     std::cin >> videoLength;
-    posts.emplace_back(title, mediaURL, videoLength);
-    std::cout << (postType == "Story" ? "Story" : "Reel") << " Created successfully.\n";
-    
+   
+    if (postType == "Story") {
+        Story newStory(title, mediaURL, videoLength);
+        posts.push_back(newStory);
+        std::cout << "Story created";
+    } else if (postType == "Reel") {
+        Reel newReel(title, mediaURL, videoLength);
+        posts.push_back(newReel);
+        std::cout << "Reel created";
+    }
 }
 
 void User::displayPosts() {

@@ -1,0 +1,44 @@
+
+ Welcome to Instagram340:
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 2
+modifyPassword() called.
+Enter new password: Hello123
+Password updated successfully to: Hello123
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 1
+Username: Emma
+Email: emma@cs.com
+Password: Hello123
+Bio: I love coding!
+Profile Picture: https://www.cs.com/Emma.jpg
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 0
+Logging you out.
