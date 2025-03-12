@@ -12,7 +12,7 @@ private:
     std::string password; 
     std::string bio;  
     std::string profilePicture; 
-    std::vector<Post> posts; 
+    std::vector<std::shared_ptr<Post> > posts;
 
 public:
     bool operator==(const User& otherUser) const;

@@ -2,7 +2,6 @@
 #define INSTAGRAM340_
 
 #include "LinkedBagDS/LinkedBag.h"
-// TO DO include necessary libraries
 #include "User.h"
  
 

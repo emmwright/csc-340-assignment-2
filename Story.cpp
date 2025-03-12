@@ -2,11 +2,11 @@
 #include <iostream>
 #include <chrono>
 
-// Story constructor: initializes title and duration
-Story::Story(const std::string& title, const std::string& mediaURL, int videoLength)
-    : Post(title, "story_placeholder_url", videoLength) {}
 
-// Display method for Story-specific output
+Story::Story(const std::string& title, const std::string& mediaURL, int videoLength)
+    : Post(title, mediaURL, videoLength) {}
+
+
 void Story::displayPost() const {
     std::cout << "[Story] Title: " << title << "\nMedia URL: " << mediaURL << "\nVideo Length for story: "
               << videoLength << " seconds\n";
@@ -17,8 +17,6 @@ void Story::displayPost() const {
     } else {
         std::cout << "Story is expired";
     }
-
-    // std::cout << std::endl;
 }
 
 // When displaying a story, use this to compute expected expiration time: timeToExpiration

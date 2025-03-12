@@ -1,19 +1,6 @@
-
  Welcome to Instagram340:
 
- Hi, what would you like to do:
-1. Display Profile
-2. Modify Password
-3. Create Post
-4. Display All Posts
-5. Display Kth Post
-6. Modify Post
-7. Delete Post
-0. Logout
-Choice: 2
-modifyPassword() called.
-Enter new password: Hello123
-Password updated successfully to: Hello123
+ Hi, Emma, what would you like to do:
 
  Hi, what would you like to do:
 1. Display Profile
@@ -27,9 +14,41 @@ Password updated successfully to: Hello123
 Choice: 1
 Username: Emma
 Email: emma@cs.com
-Password: Hello123
+Password: 123456
 Bio: I love coding!
 Profile Picture: https://www.cs.com/Emma.jpg
+
+ Hi, Emma, what would you like to do:
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 2
+modifyPassword() called.
+Enter new password: Hello
+Password updated successfully to: Hello
+
+ Hi, Emma, what would you like to do:
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 4
+Displaying all posts:
+
+ Hi, Emma, what would you like to do:
 
  Hi, what would you like to do:
 1. Display Profile

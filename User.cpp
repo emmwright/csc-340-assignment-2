@@ -1,4 +1,3 @@
-// TO DO: #include needed standard libraries and your own libraries here
 #include <string>
 #include <iostream> 
 #include "User.h"
@@ -15,7 +14,6 @@ bool User::operator==(const User& otherUser) const {
     return (username == otherUser.username) && (email == otherUser.email);
 }
 
-//Getter 
 std::string User::getUsername() const {
     return username;
 }
@@ -58,14 +56,22 @@ void User::createPost() {
     std::cout << "Media URL: ";
     std::getline(std::cin, mediaURL);
     std::cout << "Video Length (in seconds): ";
-    std::cin >> videoLength;
-   
+    while (true) {
+        std::cin >> videoLength;
+        if (std::cin.fail() || videoLength < 0) {
+            std::cout << "Invalid. Enter a positive integer: ";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        } else {
+            break;
+        }
+    }
     if (postType == "Story") {
-        Story newStory(title, mediaURL, videoLength);
+        std::shared_ptr<Post> newStory = std::make_shared<Story>(title, mediaURL, videoLength);
         posts.push_back(newStory);
         std::cout << "Story created";
     } else if (postType == "Reel") {
-        Reel newReel(title, mediaURL, videoLength);
+        std::shared_ptr<Post> newReel = std::make_shared<Reel>(title, mediaURL, videoLength);
         posts.push_back(newReel);
         std::cout << "Reel created";
     }
@@ -74,7 +80,7 @@ void User::createPost() {
 void User::displayPosts() {
     std::cout << "Displaying all posts:\n";
     for (const auto& post : posts) {
-        post.displayPost();
+        post->displayPost();
         std::cout << std::endl;
     }
 }
@@ -84,7 +90,7 @@ void User::displayKthPost() {
     std::cout << "Enter the index of the post to display: ";
     std::cin >> k;
     if (k >= 1 && k <= posts.size()) {
-        posts[k-1].displayPost();
+        posts[k-1]->displayPost();
     } else {
         std::cout << "Invalid index. There are only " << posts.size() << " posts.\n";
     }
@@ -99,7 +105,7 @@ void User::modifyPost() {
         std::cout << "Enter new title: ";
         std::cin.ignore(); 
         std::getline(std::cin, newTitle);
-        posts[k-1].setTitle(newTitle);
+        posts[k-1]->setTitle(newTitle);
         std::cout << "Post updated.\n";
     } else {
         std::cout << "Invalid index. There are only " << posts.size() << " posts.\n";
