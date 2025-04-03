@@ -9,27 +9,13 @@
 #include <cstddef>
 
 
-// Assignment 2 functions -------------------------------------------
-// TO DO: implement the two functions here
 template<class ItemType>
-bool LinkedBag<ItemType>::append(const ItemType& newEntry) {
-	Node<ItemType>* newNodePtr = new Node<ItemType>(newEntry);
-	if (headPtr == nullptr) { //if the first node is null, create a new node
-		headPtr = newNodePtr;
-	} else {
-		Node<ItemType>* curPtr = headPtr;
-		while (curPtr->getNext() != nullptr) { //while the current/head node has a node next to it, it is not the last node
-			curPtr = curPtr->getNext(); //move to the next node
-		}
-		curPtr->setNext(newNodePtr); //se the next node to a new node / add a new node to the end
+std::shared_ptr<Node<ItemType>> LinkedBag<ItemType>::findKthItem(const int& indexK) const { // assm 3
+	
+	if (indexK < 0 || indexK >= itemCount) {
+		return nullptr; // if indexK is invalid, return null
 	}
-	itemCount++;
-	return true;
-}
-
-template<class ItemType>
-Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const {
-	Node<ItemType>* curPtr = headPtr; //current == head
+	auto curPtr = headPtr; 
 	int counter = 0;
 	while (curPtr != nullptr && counter < indexK) { //if current is not equal to null and counter is less than k
 		curPtr = curPtr->getNext(); //move to the next node
@@ -44,45 +30,72 @@ template<class ItemType>
 LinkedBag<ItemType>::LinkedBag() : headPtr(nullptr), itemCount(0){}  // end default constructor
 
 template<class ItemType>
-LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType>& aBag){
+LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType>& aBag){ //big 3, creates a deep copy of another LinkedBag
 	itemCount = aBag.itemCount;
-	Node<ItemType>* origChainPtr = aBag.headPtr;  // Points to nodes in original chain
+	std::shared_ptr<Node<ItemType>> origChainPtr = aBag.headPtr;  // assm 3
 	
 	if (origChainPtr == nullptr)
 		headPtr = nullptr;  // Original bag is empty
 	else{
-		// Copy first node
-		headPtr = new Node<ItemType>();
-		headPtr->setItem(origChainPtr->getItem());
-		
-		// Copy remaining nodes
-		Node<ItemType>* newChainPtr = headPtr;		// Points to last node in new chain
-		origChainPtr = origChainPtr->getNext();	  // Advance original-chain pointer
-		
+		headPtr = std::make_shared<Node<ItemType>>(origChainPtr->getItem()); // assm 3 shared pointer
+		//copy remaining nodes
+		std::shared_ptr<Node<ItemType>> newChainPtr = headPtr;
+		origChainPtr = origChainPtr->getNext();
+
 		while (origChainPtr != nullptr){
-			// Get next item from original chain
+			// get next item from original chain
 			ItemType nextItem = origChainPtr->getItem();
 				  
-			// Create a new node containing the next item
-			Node<ItemType>* newNodePtr = new Node<ItemType>(nextItem);
-			
-			// Link new node to end of new chain
+			// create a new node containing the next item
+			auto newNodePtr = std::make_shared<Node<ItemType>>(nextItem); // assm 3
+
+			// link new node to end of new chain
 			newChainPtr->setNext(newNodePtr);
 			
-			// Advance pointer to new last node
+			// next node pointer to new last node
 			newChainPtr = newChainPtr->getNext();
 
-			// Advance original-chain pointer
+			// next node in original chain pointer
 			origChainPtr = origChainPtr->getNext();
 		}  // end while
 		
-		newChainPtr->setNext(nullptr);				  // Flag end of chain
+		//newChainPtr->setNext(nullptr); //shared pointer will already put next pointer to null pointer
 	}  // end if
 }  // end copy constructor
 
+
+template<class ItemType> //big 3, overloaded assignment operator for big 3
+LinkedBag<ItemType>& LinkedBag<ItemType>::operator=(const LinkedBag<ItemType> &aBag) {
+	if (this != &aBag) { //to prevent self-assignment
+		clear(); //deletes all nodes
+	
+		itemCount = aBag.itemCount; //copy itemCount
+		auto origChainPtr = aBag.headPtr; //copy head pointer
+		if (origChainPtr == nullptr) {
+			headPtr = nullptr;
+		} else {
+			headPtr = std::make_shared<Node<ItemType>>(origChainPtr->getItem()); //copy first node
+			auto newChainPtr = headPtr; //copy new chain pointer
+			origChainPtr = origChainPtr->getNext(); //move to next node in original chain
+
+			while (origChainPtr != nullptr) { 
+				auto newNodePtr = std::make_shared<Node<ItemType>>(origChainPtr->getItem()); //copy remaining nodes
+				newChainPtr->setNext(newNodePtr); //link new node to end of new chain
+				newChainPtr = newNodePtr; //move to last node in new chain
+				origChainPtr = origChainPtr->getNext(); //move to next node in original chain
+			}
+		}
+	}
+	return *this;
+}
+
+
+
+
+
 template<class ItemType>
 LinkedBag<ItemType>::~LinkedBag(){
-	clear();
+	clear(); //big 3 implementation, clear deletes all nodes.
 }  // end destructor
 
 
@@ -98,12 +111,10 @@ int LinkedBag<ItemType>::getCurrentSize() const{
 
 template<class ItemType>
 bool LinkedBag<ItemType>::add(const ItemType& newEntry){
-	// Add to beginning of chain: new node references rest of chain;
-	// (headPtr is null if chain is empty)		  
-	Node<ItemType>* nextNodePtr = new Node<ItemType>();
-	nextNodePtr->setItem(newEntry);
-	nextNodePtr->setNext(headPtr);  // New node points to chain
-	headPtr = nextNodePtr;			// New node is now first node
+	auto nextNodePtr = std::make_shared<Node<ItemType>>(newEntry); //assm 3
+	
+	nextNodePtr->setNext(headPtr);  // new node points to chain
+	headPtr = nextNodePtr;			// new node is now first node
 	itemCount++;
 	
 	return true;
@@ -112,7 +123,7 @@ bool LinkedBag<ItemType>::add(const ItemType& newEntry){
 template<class ItemType>
 std::vector<ItemType> LinkedBag<ItemType>::toVector() const{
 	std::vector<ItemType> bagContents;
-	Node<ItemType>* curPtr = headPtr;
+	std::shared_ptr<Node<ItemType>> curPtr = headPtr; // assm 3
 	int counter = 0;
 	while ((curPtr != nullptr) && (counter < itemCount)){
 		bagContents.push_back(curPtr->getItem());
@@ -125,41 +136,31 @@ std::vector<ItemType> LinkedBag<ItemType>::toVector() const{
 
 template<class ItemType>
 bool LinkedBag<ItemType>::remove(const ItemType& anEntry){
-	Node<ItemType>* entryNodePtr = getPointerTo(anEntry);
+	auto entryNodePtr = getPointerTo(anEntry); //assm 3
+
 	bool canRemoveItem = !isEmpty() && (entryNodePtr != nullptr);
 	if (canRemoveItem){
-		// Copy data from first node to located node
-		entryNodePtr->setItem(headPtr->getItem());
-		
-		// Delete first node
-		Node<ItemType>* nodeToDeletePtr = headPtr;
-		headPtr = headPtr->getNext();
-		
-		// Return node to the system
-		nodeToDeletePtr->setNext(nullptr);
-		delete nodeToDeletePtr;
-		nodeToDeletePtr = nullptr;
-		
+
+		if (headPtr == entryNodePtr) {
+			headPtr = headPtr->getNext(); //if first node is node to be removed, move head node to next
+		} else { 
+		auto prevNodePtr = headPtr;
+
+		while (prevNodePtr->getNext() != entryNodePtr) {
+			prevNodePtr = prevNodePtr->getNext();
+		}
+		prevNodePtr->setNext(entryNodePtr->getNext()); // link previous node to the next node of the entry node
+		}
 		itemCount--;
-	} // end if
-	
+ 	}
+
 	return canRemoveItem;
-}  // end remove
+	}
+		
 
 template<class ItemType>
 void LinkedBag<ItemType>::clear(){
-	Node<ItemType>* nodeToDeletePtr = headPtr;
-	while (headPtr != nullptr){
-		headPtr = headPtr->getNext();
-
-		// Return node to the system
-		nodeToDeletePtr->setNext(nullptr);
-		delete nodeToDeletePtr;
-		
-		nodeToDeletePtr = headPtr;
-	}  // end while
-	// headPtr is nullptr; nodeToDeletePtr is nullptr
-	
+	headPtr.reset(); //assm 3, deletes all nodes
 	itemCount = 0;
 }  // end clear
 
@@ -191,9 +192,10 @@ bool LinkedBag<ItemType>::contains(const ItemType& anEntry) const{
 // Returns either a pointer to the node containing a given entry 
 // or the null pointer if the entry is not in the bag.
 template<class ItemType>
-Node<ItemType>* LinkedBag<ItemType>::getPointerTo(const ItemType& anEntry) const{
+std::shared_ptr<Node<ItemType>> LinkedBag<ItemType>::getPointerTo(const ItemType& anEntry) const {
+
 	bool found = false;
-	Node<ItemType>* curPtr = headPtr;
+	auto curPtr = headPtr;
 	
 	while (!found && (curPtr != nullptr)){
 		if (anEntry == curPtr->getItem())

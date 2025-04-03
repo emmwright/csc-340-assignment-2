@@ -4,6 +4,7 @@
 #include <string>
 #include "Post.h"
 #include <vector>
+#include <memory>   // For std::shared_ptr
 
 class User {
 private:
@@ -12,7 +13,7 @@ private:
     std::string password; 
     std::string bio;  
     std::string profilePicture; 
-    std::vector<std::shared_ptr<Post> > posts;
+    std::vector<std::shared_ptr<Post>> posts;
 
 public:
     bool operator==(const User& otherUser) const;
@@ -25,6 +26,7 @@ public:
     void displayKthPost();
     void modifyPost();
     void deletePost();
+    void editPost();
 
     User(); 
     User(const std::string& username, const std::string& email, const std::string& password,

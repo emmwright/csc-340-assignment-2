@@ -10,7 +10,7 @@
 class Post {
 protected:
     std::string title;
-    std::chrono::steady_clock::time_point time_stamp;
+    std::chrono::steady_clock::time_point time_stamp; //big 3 isnt needed as this handles its own memory management?
     std::string mediaURL;
     int videoLength;
 
@@ -28,6 +28,13 @@ public:
     void setTitle(const std::string & newTitle) {
         title = newTitle;
     }
+    void setMediaURL(const std::string & newMediaURL) {
+        mediaURL = newMediaURL;
+    }
+    void setVideoLength(int newVideoLength) {
+        videoLength = newVideoLength;
+    }
+
 
     virtual ~Post() {}
 };

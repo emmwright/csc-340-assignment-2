@@ -2,6 +2,7 @@
 #define REEL_
 
 #include "Post.h"
+#include <iostream>
 
 // Reel class inheriting from Post
 // declare the methods here
@@ -12,6 +13,8 @@ public:
     void displayPost() const override {
          std::cout << "[Reel] Title: " << title << "\nMedia URL: " << mediaURL << "\nVideo Length: " << videoLength << " seconds\n";
 }
+
+    
 
 };
 

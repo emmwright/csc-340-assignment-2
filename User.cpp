@@ -44,7 +44,7 @@ void User::createPost() {
     while (true) {
     
         std::cin >> postType;
-        if (postType == "Story" || postType == "Reel") {
+        if (postType == "Story" || postType == "Reel" || postType == "story" || postType == "reel") {
             break;
         } else {
             std::cout << "Invalid. Please enter 'Story' or 'Reel': ";
@@ -66,11 +66,11 @@ void User::createPost() {
             break;
         }
     }
-    if (postType == "Story") {
+    if (postType == "Story" || postType == "story") {
         std::shared_ptr<Post> newStory = std::make_shared<Story>(title, mediaURL, videoLength);
         posts.push_back(newStory);
         std::cout << "Story created";
-    } else if (postType == "Reel") {
+    } else if (postType == "Reel" || postType == "reel") {
         std::shared_ptr<Post> newReel = std::make_shared<Reel>(title, mediaURL, videoLength);
         posts.push_back(newReel);
         std::cout << "Reel created";
@@ -101,16 +101,72 @@ void User::modifyPost() {
     std::cout << "Enter index of post to edit: ";
     std::cin >> k;
     if (k >= 1 && k <= posts.size()) {
+        Post* postPtr = posts[k-1].get();
+           if (dynamic_cast<Reel*>(postPtr)) { 
+            std::cout << "You have now added a filter, AR effects and music to your reel.\n";
+           } else if (dynamic_cast<Story*>(postPtr)) {
+            std::cout << "You have now added a filter, music, stickers and effects to your story.\n";
+           }
+        } else {
+            std::cout << "Invalid index. There are only " << posts.size() << " posts.\n";
+            }
+           }
+
+void User::editPost() { //assm 3, edit post function to edit title, url or video length
+    int k;
+     std::cout << "Enter index of post to edit: ";
+    std::cin >> k;
+    std::cin.ignore(); 
+    
+    if (k > 1 && k < posts.size()) {
+        std::cout << "Invalid index. There are only " << posts.size() << " posts.\n";
+        return;
+    }
+        std::string editType;
+        while (true) {
+        std::cout << "What do you want to edit: Title, URL, or VideoLength: ";
+        std::cin >> editType;
+        if (editType == "Title" || editType == "title") {
         std::string newTitle;
         std::cout << "Enter new title: ";
         std::cin.ignore(); 
         std::getline(std::cin, newTitle);
         posts[k-1]->setTitle(newTitle);
         std::cout << "Post updated.\n";
-    } else {
-        std::cout << "Invalid index. There are only " << posts.size() << " posts.\n";
+        break;
+        }
+        else if (editType == "URL" || editType == "url" || editType == "Url") {
+        std::string newURL;
+        std::cout << "Enter new URL: ";
+        std::cin.ignore();
+        std::getline(std::cin, newURL);
+        posts[k-1]->setMediaURL(newURL);
+        std::cout << "Post updated.\n";
+        break;
+        }
+        else if (editType == "VideoLength" || editType == "videolength" || editType == "Video length") {
+        int newVideoLength;
+        while (true) {
+        std::cout << "Enter new video length: ";
+        std::cin >> newVideoLength;
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid. Enter a positive integer: ";
+        } else {
+            break;
+            }
+        }
+        posts[k-1]->setVideoLength(newVideoLength);
+        std::cout << "Post updated.\n";
+        break;
+        }
+      else {
+        std::cout << "Invalid choice, Enter 'Title', 'URL', or 'Video Length': \n";
+        }
     }
 }
+
 
 void User::deletePost() { 
     int k;

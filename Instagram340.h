@@ -1,6 +1,8 @@
 #ifndef INSTAGRAM340_
 #define INSTAGRAM340_
 
+#include <vector>
+#include <memory>
 #include "LinkedBagDS/LinkedBag.h"
 #include "User.h"
  
@@ -9,7 +11,7 @@
 // It should allow clients to add users and retrieve a user from the list
 class Instagram340 {
 	private:
-		LinkedBag<User> users;
+		std::vector<std::shared_ptr<User>> users; //assm 3
 
 	public:
 		Instagram340();

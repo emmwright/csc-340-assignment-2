@@ -24,6 +24,7 @@ void displayUserMenu(User& user){
 		<< "5. Display Kth Post\n"
 		<< "6. Modify Post\n"
 		<< "7. Delete Post\n"
+		<< "8. Edit Post\n" //Assignment 3: Edit Post option added
 		<< "0. Logout\n"
 		<< "Choice: ";
 		cin >> userChoice;
@@ -57,8 +58,9 @@ void displayUserMenu(User& user){
 				user.deletePost();
 				break;
 			}
-			case 8:{
-				
+			case 8: {
+				user.editPost(); // Assignment 3: Call to editPost method
+				break;
 			}
 			case 0: {
 				cout << "Logging you out." << endl;

@@ -1,3 +1,8 @@
+ASSIGNMENT 3 - UPDATED INPUT01.TXT
+
+emmawright@Emmas-MacBook-Pro csc-340-assignment-2 % g++ -std=c++11 -o InstagramApp InstagramMain.cpp 
+emmawright@Emmas-MacBook-Pro csc-340-assignment-2 % ./InstagramApp                                   
+
  Welcome to Instagram340:
 
  Hi, Emma, what would you like to do:
@@ -10,13 +15,30 @@
 5. Display Kth Post
 6. Modify Post
 7. Delete Post
+8. Edit Post
 0. Logout
-Choice: 1
-Username: Emma
-Email: emma@cs.com
-Password: 123456
-Bio: I love coding!
-Profile Picture: https://www.cs.com/Emma.jpg
+Choice: 3
+Select type of post (Story/Reel):
+story
+Title: redwood trees
+Media URL: djgvnrhuneuijewf
+Video Length (in seconds): 55
+Story created
+ Hi, Emma, what would you like to do:
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+8. Edit Post
+0. Logout
+Choice: 6
+Enter index of post to edit: 1
+You have now added a filter, music, stickers and effects to your story.
 
  Hi, Emma, what would you like to do:
 
@@ -28,11 +50,13 @@ Profile Picture: https://www.cs.com/Emma.jpg
 5. Display Kth Post
 6. Modify Post
 7. Delete Post
+8. Edit Post
 0. Logout
-Choice: 2
-modifyPassword() called.
-Enter new password: Hello
-Password updated successfully to: Hello
+Choice: 8
+Enter index of post to edit: 1
+What do you want to edit: Title, URL, or VideoLength: title
+Enter new title: redwood trees and birds     
+Post updated.
 
  Hi, Emma, what would you like to do:
 
@@ -44,9 +68,32 @@ Password updated successfully to: Hello
 5. Display Kth Post
 6. Modify Post
 7. Delete Post
+8. Edit Post
+0. Logout
+Choice: 8
+Enter index of post to edit: 1
+What do you want to edit: Title, URL, or VideoLength: videolength
+Enter new video length: 10
+Post updated.
+
+ Hi, Emma, what would you like to do:
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+8. Edit Post
 0. Logout
 Choice: 4
 Displaying all posts:
+[Story] Title: redwood trees and birds
+Media URL: djgvnrhuneuijewf
+Video Length for story: 10 seconds
+23 hours remaining
 
  Hi, Emma, what would you like to do:
 
@@ -58,6 +105,28 @@ Displaying all posts:
 5. Display Kth Post
 6. Modify Post
 7. Delete Post
+8. Edit Post
+0. Logout
+Choice: 8
+Enter index of post to edit: 1
+What do you want to edit: Title, URL, or VideoLength: 11
+Invalid choice, Enter 'Title', 'URL', or 'Video Length': 
+What do you want to edit: Title, URL, or VideoLength: URL
+Enter new URL: eeeeeeee
+Post updated.
+
+ Hi, Emma, what would you like to do:
+
+ Hi, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+8. Edit Post
 0. Logout
 Choice: 0
 Logging you out.
+emmawright@Emmas-MacBook-Pro csc-340-assignment-2 % 
